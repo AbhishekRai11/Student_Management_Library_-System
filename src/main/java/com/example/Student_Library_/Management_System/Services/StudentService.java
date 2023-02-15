@@ -23,4 +23,15 @@ public class StudentService {
         studentRepository.save(student);
         return "";
     }
+    public String getNameByUser(String email){
+        Student student=studentRepository.findByEmail(email);
+        return student.getName();
+    }
+
+    public String updateMob(Student student){
+        Student originalStudent=studentRepository.findById(student.getId()).get();
+        originalStudent.setMobNo(student.getMobNo());
+        studentRepository.save(originalStudent);
+        return "Student Mob update";
+    }
 }
