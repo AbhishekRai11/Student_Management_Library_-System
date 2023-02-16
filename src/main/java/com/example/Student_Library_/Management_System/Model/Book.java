@@ -4,6 +4,9 @@ package com.example.Student_Library_.Management_System.Model;
 import com.example.Student_Library_.Management_System.Enums.Genre;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="book")
 public class Book {
@@ -32,8 +35,18 @@ public class Book {
     @JoinColumn
     private Card card;
 
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private List<Transactions> listOfTransactions=new ArrayList<>();
+
     private boolean issued;
 
+    public List<Transactions> getListOfTransactions() {
+        return listOfTransactions;
+    }
+
+    public void setListOfTransactions(List<Transactions> listOfTransactions) {
+        this.listOfTransactions = listOfTransactions;
+    }
 
     public Card getCard() {
         return card;
